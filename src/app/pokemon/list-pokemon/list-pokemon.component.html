@@ -1,0 +1,45 @@
+<h1>Liste des Pokémons</h1>
+
+<!--INTERCEPTER DIRECTEMENT OBJET EVENT-->
+<!--<input-->
+<!--        type="number"-->
+<!--        (click)="selectPokemon($event)"-->
+<!--/>-->
+
+<!--INTERRACTION DIRECTE DANS LE TEMPLATE EN DECLARANT VARIABLE -->
+<!--<input-->
+<!--        #input-->
+<!--        (keyup)="0" //Utilisateur frappe une touche au clavier-->
+<!--        type="text"-->
+<!--/>-->
+<!--<p>{{ input.value }}</p>-->
+
+<!--<input-->
+<!--        #input-->
+<!--        (keyup.enter)="selectPokemon(input.value)"-->
+<!--        type="number"-->
+<!--/>-->
+<!--&lt;!&ndash;? = Si non définie n'afffiche rien&ndash;&gt;-->
+<!--<p *ngIf="pokemonSelected">-->
+<!--    Vous avez sélectioné le pokémon : {{ pokemonSelected?.name }}-->
+<!--</p>-->
+<!--<p *ngIf="!pokemonSelected">-->
+<!--    Aucun pokémon n'a été trouvé-->
+<!--</p>-->
+
+<section class="pokemon-card-container" >
+    <div class="pokemon-card" *ngFor="let pokemon of pokemonList" (click)="selectPokemon(pokemon.id);goToPokemon(pokemon)" pkmBorderCard="green">
+        <img [src]="pokemon.picture" alt="image pokemon">
+        <div class="pokemon-card-info">
+            <p class="pokemon-name">{{pokemon.name}}</p>
+            <p>{{ pokemon.created | date:"dd/MM/yyyy" }}</p>
+            <span
+                    *ngFor="let type of pokemon.types"
+                    class="pokemon-type"
+                    [style.background-color]="type | pokemonTypeColor"
+            >
+                {{type}}
+            </span>
+        </div>
+    </div>
+</section>
